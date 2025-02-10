@@ -1,0 +1,22 @@
+{
+  "plants": [
+    {
+      "id": 1,
+      "name": "Monstera Deliciosa",
+      "category": "Tropical",
+      "image": "assets/plants/plant-01.jpg",
+      "humidity": 75,
+      "sunlight": 60,
+      "temperature": 22
+    },
+    {
+      "id": 2,
+      "name": "Ficus Lyrata",
+      "category": "Arbres d'intérieur",
+      "image": "assets/plants/plant-02.jpg",
+      "humidity": 65,
+      "sunlight": 80,
+      "temperature": 24
+    }
+  ]
+}
