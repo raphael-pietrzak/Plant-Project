@@ -1,0 +1,4 @@
+Capteur d'humidité : pin 4
+Capteur de luminosité : pin 35
+Capteur de température : pin 34
+Relay pour la pompe : pin 2
