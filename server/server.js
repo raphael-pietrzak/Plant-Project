@@ -85,6 +85,31 @@ app.put('/api/plants/:id/sensors', async (req, res) => {
   }
 });
 
+// Route pour les mesures IoT
+app.post('/api/measurements', async (req, res) => {
+  try {
+    const data = req.body;
+    
+    // Logging des données reçues
+    console.log('Nouvelles mesures reçues:');
+    console.log('Device ID:', data.device_id);
+    console.log('Température:', data.temperature, '°C');
+    console.log('Humidité:', data.humidity, '%');
+    console.log('Timestamp:', new Date().toISOString());
+    console.log('------------------------');
+
+    // Ici vous pourriez ajouter le code pour sauvegarder les données dans une base de données
+
+    res.status(201).json({
+      message: 'Mesures reçues avec succès',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Erreur lors du traitement des mesures:', error);
+    res.status(500).json({ error: 'Erreur lors du traitement des mesures' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });

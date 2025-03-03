@@ -12,6 +12,8 @@ class TemperatureSensor:
         # Convertit la valeur brute ADC (0-4095) en tension (0-3.3v)
         voltage = (raw / 4095) * 3.3
         # Convertit la tension en température (Il faudra l'ajuster pour que ça marche bien)
+        # temp capteur : 280
+        # temp reelle : 21
         temperature = (voltage - 0.5) * 100
         return round(temperature, 2)
     
