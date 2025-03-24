@@ -7,10 +7,5 @@ This project is a plant monitoring system. It is composed of an ESP32 microcontr
 
 # Preview
 
-![alt text](<documents/README/Capture d’écran 2025-02-10 à 11.08.56.png>)
 
-![alt text](<documents/README/Capture d’écran 2025-02-10 à 12.35.11.png>)
-
-![alt text](<documents/README/Capture d’écran 2025-02-10 à 12.35.17.png>)
-
-![alt text](<documents/README/Capture d’écran 2025-02-10 à 12.36.31.png>)
+![alt text](<documents/README/Capture d’écran 2025-02-10 à 11.08.56.png>)![alt text](<documents/README/Capture d’écran 2025-02-10 à 12.36.31.png>)![alt text](<documents/README/Capture d’écran 2025-03-23 à 21.47.52.png>)![alt text](<documents/README/Capture d’écran 2025-03-24 à 12.10.27.png>)![alt text](<documents/README/Capture d’écran 2025-03-24 à 12.10.35.png>)![alt text](<documents/README/Capture d’écran 2025-03-24 à 12.10.44.png>)
