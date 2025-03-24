@@ -1,11 +1,10 @@
-
 # Configuration Wi-Fi
 WIFI_SSID = "iPhone de Raphael"
 WIFI_PASSWORD = "7652314326"
 WIFI_USERNAME = None  # Pour WPA2-Enterprise, sinon None
 
 # Configuration du serveur
-SERVER_URL = "http://192.0.0.2:3001/api"
+SERVER_URL = "https://rtm8v0k5-3001.usw3.devtunnels.ms/api"  # Remplacez X par l'adresse IP correcte de votre serveur
 DEVICE_ID = "ESP32_PLANT"
 
 # Pins des capteurs et actuateurs
@@ -23,5 +22,5 @@ LIGHT_THRESHOLD = 20  # % en dessous duquel il fait "sombre"
 WATERING_DURATION = 3  # secondes d'arrosage quand la plante est sèche
 
 # Intervalles
-READING_INTERVAL = 5    # secondes entre chaque lecture des capteurs
-REPORTING_INTERVAL = 30  # secondes entre chaque envoi au serveur
+READING_INTERVAL = 1    # secondes entre chaque lecture des capteurs
+REPORTING_INTERVAL = 5  # secondes entre chaque envoi au serveur
