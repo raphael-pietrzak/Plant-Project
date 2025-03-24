@@ -20,7 +20,7 @@ exports.seed = async function(knex) {
       location: 'Intérieur',
       waterFrequency: 7, // valeur par défaut d'une semaine
       lastWatered: new Date(),
-      image_url: plant.image,
+      image_url: "https://media.istockphoto.com/id/469538141/fr/photo/jeune-plant.jpg?s=612x612&w=0&k=20&c=YusPoy6PHk7ai5y4iMzgx_RpVJjcmvyVelmfUBkUSKk=",
       device_id: 'ESP8266_1' // Par défaut, on associe les plantes au capteur existant
     }));
 

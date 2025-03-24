@@ -116,7 +116,7 @@ function PlantDetail() {
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3 mb-4 md:mb-0">
             <img 
-              src={plant.image_url || "https://via.placeholder.com/300?text=Pas+d'image"} 
+              src={plant.image_url || "https://media.istockphoto.com/id/511976070/fr/photo/vert-violet.jpg?s=612x612&w=0&k=20&c=T-ON5NpItAC-nv91zifv_zYr8DsEkDN8hdCLQeb_K3Q="}
               alt={plant.name}
               className="w-full h-64 object-cover rounded-lg"
             />

@@ -14,15 +14,8 @@ interface PlantCardProps {
 function PlantCard({ plant, measurement, onDelete, onClick }: PlantCardProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   
-  // Sélectionner une image aléatoire parmi les 12 disponibles
-  const randomPlantImage = useMemo(() => {
-    const randomNum = Math.floor(Math.random() * 12) + 1;
-    const formattedNum = randomNum.toString().padStart(2, '0');
-    return `/assets/plants/plant-${formattedNum}.jpg`;
-  }, [plant.id]);
-  
-  // Utiliser l'image aléatoire si aucune URL n'est fournie
-  const imageUrl = plant.image_url || randomPlantImage;
+
+  const imageUrl = plant.image_url || "https://media.istockphoto.com/id/511976070/fr/photo/vert-violet.jpg?s=612x612&w=0&k=20&c=T-ON5NpItAC-nv91zifv_zYr8DsEkDN8hdCLQeb_K3Q="
   
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -44,10 +37,10 @@ function PlantCard({ plant, measurement, onDelete, onClick }: PlantCardProps) {
           <img
             src={imageUrl}
             alt={plant.name}
-            className="h-48"
+            className="w-full h-48 object-cover"
             onError={(e) => {
               // Fallback en cas d'erreur de chargement
-              (e.target as HTMLImageElement).src = "/assets/plants/plant-01.jpg";
+              (e.target as HTMLImageElement).src = "https://media.istockphoto.com/id/511976070/fr/photo/vert-violet.jpg?s=612x612&w=0&k=20&c=T-ON5NpItAC-nv91zifv_zYr8DsEkDN8hdCLQeb_K3Q="
             }}
           />
           {onDelete && (
