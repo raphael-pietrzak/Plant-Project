@@ -7,6 +7,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 function PlantDetail() {
   const { id } = useParams<{ id: string }>();
+  console.log(id);
   const navigate = useNavigate();
   const [plant, setPlant] = useState<Plant | null>(null);
   const [measurements, setMeasurements] = useState<Measurement[]>([]);
@@ -23,6 +24,7 @@ function PlantDetail() {
         }
         
         const plantData = await plantService.getPlantById(parseInt(id));
+        console.log(plantData);
         setPlant(plantData);
         
         // Charger les mesures si un appareil est connecté
@@ -59,6 +61,7 @@ function PlantDetail() {
   };
 
   // Formater les données pour le graphique
+  console.log(measurements);
   const chartData = measurements.map(m => ({
     date: new Date(m.timestamp).toLocaleDateString(),
     time: new Date(m.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
@@ -207,7 +210,13 @@ function PlantDetail() {
                     `${value}${name === 'humidity' ? '%' : '°C'}`, 
                     name === 'humidity' ? 'Humidité' : 'Température'
                   ]}
-                  labelFormatter={(label) => `${chartData[label as number].date} ${chartData[label as number].time}`}
+                  labelFormatter={(index) => {
+                    // Vérifier que l'index est valide avant d'accéder aux propriétés
+                    if (typeof index === 'number' && chartData[index]) {
+                      return `${chartData[index].date} ${chartData[index].time}`;
+                    }
+                    return 'Données non disponibles';
+                  }}
                 />
                 <Legend />
                 <Line 

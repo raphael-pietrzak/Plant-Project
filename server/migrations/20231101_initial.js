@@ -27,7 +27,7 @@ exports.up = function(knex) {
       table.string('location');
       table.integer('waterFrequency');
       table.datetime('lastWatered');
-      table.string('imageUrl');
+      table.string('image_url');
       table.string('device_id').references('device_id').inTable('devices').onDelete('SET NULL');
       table.timestamps(true, true);
     })
