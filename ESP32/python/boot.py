@@ -1,5 +1,4 @@
 # Ce fichier est exécuté au démarrage de l'ESP32
-import gc
 import time
 
 print("\n" + "="*40)
