@@ -1,54 +1,55 @@
-import { useState } from 'react';
-import { Sprout, Home, Settings } from 'lucide-react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Preferences from './components/Preferences';
+import PlantDetail from './components/PlantDetail';
+import PlantForm from './components/PlantForm';
+import { Home, Settings, Leaf } from 'lucide-react';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('home');
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-lg">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Sprout className="h-8 w-8 text-emerald-600" />
-              <span className="ml-2 text-xl font-semibold text-gray-800">Projet Plante IoT</span>
-            </div>
-            <div className="flex space-x-8">
-              <button
-                onClick={() => setActiveTab('home')}
-                className={`flex items-center px-3 py-2 text-sm font-medium ${
-                  activeTab === 'home'
-                    ? 'text-emerald-600 border-b-2 border-emerald-600'
-                    : 'text-gray-500 hover:text-emerald-600'
-                }`}
-              >
-                <Home className="h-5 w-5 mr-1" />
-                Accueil
-              </button>
-              <button
-                onClick={() => setActiveTab('preferences')}
-                className={`flex items-center px-3 py-2 text-sm font-medium ${
-                  activeTab === 'preferences'
-                    ? 'text-emerald-600 border-b-2 border-emerald-600'
-                    : 'text-gray-500 hover:text-emerald-600'
-                }`}
-              >
-                <Settings className="h-5 w-5 mr-1" />
-                Préférences
-              </button>
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        <nav className="bg-emerald-700 text-white shadow-md">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex justify-between">
+              <div className="flex space-x-4">
+                <div className="flex items-center py-5 px-2">
+                  <Leaf className="h-6 w-6 mr-1" />
+                  <span className="font-bold">PlanteCare</span>
+                </div>
+                <div className="hidden md:flex items-center space-x-1">
+                  <Link to="/" className="py-5 px-3 hover:text-emerald-200 flex items-center">
+                    <Home className="h-5 w-5 mr-1" />
+                    <span>Tableau de bord</span>
+                  </Link>
+                  <Link to="/preferences" className="py-5 px-3 hover:text-emerald-200 flex items-center">
+                    <Settings className="h-5 w-5 mr-1" />
+                    <span>Préférences</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {/* Content */}
-      <main className="max-w-7xl mx-auto px-4 py-6">
-        {activeTab === 'home' ? <Dashboard /> : <Preferences />}
-      </main>
-    </div>
+        <div className="max-w-6xl mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/preferences" element={<Preferences />} />
+            <Route path="/plants/:id" element={<PlantDetail />} />
+            <Route path="/plants/add" element={<PlantForm />} />
+            <Route path="/plants/edit/:id" element={<PlantForm />} />
+          </Routes>
+        </div>
+
+        <footer className="bg-white py-4 mt-8">
+          <div className="max-w-6xl mx-auto px-4 text-center text-gray-600 text-sm">
+            © {new Date().getFullYear()} PlanteCare - Tous droits réservés
+          </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
