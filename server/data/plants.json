@@ -17,6 +17,168 @@
       "humidity": 65,
       "sunlight": 80,
       "temperature": 24
+    },
+    {
+      "id": 3,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:22:42.497575",
+      "temperature": 22.4,
+      "humidity": 60.9,
+      "light": 391,
+      "battery": 3.23
+    },
+    {
+      "id": 4,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:23:12.531648",
+      "temperature": 27.8,
+      "humidity": 76.3,
+      "light": 570,
+      "battery": 3.99
+    },
+    {
+      "id": 5,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:23:42.554431",
+      "temperature": 25.7,
+      "humidity": 68.9,
+      "light": 396,
+      "battery": 4.07
+    },
+    {
+      "id": 6,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:24:12.581470",
+      "temperature": 25.2,
+      "humidity": 61.7,
+      "light": 580,
+      "battery": 3.01
+    },
+    {
+      "id": 7,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:24:42.592324",
+      "temperature": 21.4,
+      "humidity": 68.7,
+      "light": 554,
+      "battery": 3.38
+    },
+    {
+      "id": 8,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:25:12.613391",
+      "temperature": 20.2,
+      "humidity": 73.8,
+      "light": 325,
+      "battery": 3.23
+    },
+    {
+      "id": 9,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:25:42.628066",
+      "temperature": 22.7,
+      "humidity": 67.4,
+      "light": 577,
+      "battery": 3.05
+    },
+    {
+      "id": 10,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:26:12.653243",
+      "temperature": 28.6,
+      "humidity": 64.3,
+      "light": 606,
+      "battery": 3.31
+    },
+    {
+      "id": 11,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:26:42.668107",
+      "temperature": 29.8,
+      "humidity": 69.8,
+      "light": 246,
+      "battery": 3.71
+    },
+    {
+      "id": 12,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:27:12.684036",
+      "temperature": 21,
+      "humidity": 67.9,
+      "light": 777,
+      "battery": 3.86
+    },
+    {
+      "id": 13,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:27:42.699867",
+      "temperature": 24.7,
+      "humidity": 62.7,
+      "light": 531,
+      "battery": 3.17
+    },
+    {
+      "id": 14,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:28:12.720095",
+      "temperature": 22.9,
+      "humidity": 74.4,
+      "light": 782,
+      "battery": 3.6
+    },
+    {
+      "id": 15,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:28:42.743896",
+      "temperature": 23.7,
+      "humidity": 65.7,
+      "light": 288,
+      "battery": 3.47
+    },
+    {
+      "id": 16,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:29:12.765185",
+      "temperature": 24.4,
+      "humidity": 61.8,
+      "light": 686,
+      "battery": 3.79
+    },
+    {
+      "id": 17,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:29:42.779425",
+      "temperature": 24.7,
+      "humidity": 79.7,
+      "light": 681,
+      "battery": 3.61
+    },
+    {
+      "id": 18,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:30:12.794111",
+      "temperature": 23.5,
+      "humidity": 73.1,
+      "light": 411,
+      "battery": 4.11
+    },
+    {
+      "id": 19,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:30:42.808590",
+      "temperature": 21.5,
+      "humidity": 76.4,
+      "light": 470,
+      "battery": 3.74
+    },
+    {
+      "id": 20,
+      "device_id": "ESP8266_1",
+      "timestamp": "2025-03-24T10:31:12.822460",
+      "temperature": 24.9,
+      "humidity": 66.7,
+      "light": 218,
+      "battery": 3.35
     }
   ]
 }

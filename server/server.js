@@ -1,115 +1,58 @@
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs').promises;
 const path = require('path');
+const fs = require('fs');
+const db = require('./config/database');
+
+// Routes
+const measurementRoutes = require('./routes/measurementRoutes');
+const plantRoutes = require('./routes/plantRoutes');
+const preferenceRoutes = require('./routes/preferenceRoutes');
 
 const app = express();
 const PORT = 3001;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Chemins des fichiers JSON
-const plantsPath = path.join(__dirname, 'data', 'plants.json');
-const preferencesPath = path.join(__dirname, 'data', 'preferences.json');
+// Routes
+app.use('/api/measurements', measurementRoutes);
+app.use('/api/plants', plantRoutes);
+app.use('/api/preferences', preferenceRoutes);
 
-// Fonction utilitaire pour lire les fichiers JSON
-async function readJsonFile(filePath) {
-  const data = await fs.readFile(filePath, 'utf8');
-  return JSON.parse(data);
-}
-
-// Fonction utilitaire pour écrire dans les fichiers JSON
-async function writeJsonFile(filePath, data) {
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2));
-}
-
-// Routes pour les plantes
-app.get('/api/plants', async (req, res) => {
+// Initialisation de la base de données et démarrage du serveur
+async function initializeServer() {
   try {
-    const data = await readJsonFile(plantsPath);
-    res.json(data.plants);
-  } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la lecture des plantes' });
-  }
-});
+    // Vérifier que le répertoire des migrations existe
+    const migrationsDir = path.join(__dirname, 'migrations');
+    if (!fs.existsSync(migrationsDir)) {
+      fs.mkdirSync(migrationsDir, { recursive: true });
+      console.log(`Répertoire des migrations créé: ${migrationsDir}`);
+    }
 
-app.post('/api/plants', async (req, res) => {
-  try {
-    const data = await readJsonFile(plantsPath);
-    const newPlant = {
-      id: data.plants.length + 1,
-      ...req.body
-    };
-    data.plants.push(newPlant);
-    await writeJsonFile(plantsPath, data);
-    res.status(201).json(newPlant);
-  } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de l\'ajout de la plante' });
-  }
-});
-
-// Routes pour les préférences
-app.get('/api/preferences', async (req, res) => {
-  try {
-    const data = await readJsonFile(preferencesPath);
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la lecture des préférences' });
-  }
-});
-
-app.put('/api/preferences', async (req, res) => {
-  try {
-    await writeJsonFile(preferencesPath, req.body);
-    res.json(req.body);
-  } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la mise à jour des préférences' });
-  }
-});
-
-// Route pour mettre à jour les données des plantes (simulation IoT)
-app.put('/api/plants/:id/sensors', async (req, res) => {
-  try {
-    const data = await readJsonFile(plantsPath);
-    const plant = data.plants.find(p => p.id === parseInt(req.params.id));
-    if (!plant) {
-      return res.status(404).json({ error: 'Plante non trouvée' });
+    // Vérifier la connexion à la base de données
+    await db.raw('SELECT 1+1 as result');
+    console.log('Base de données SQLite connectée');
+    
+    try {
+      // Exécuter les migrations
+      await db.migrate.latest();
+      console.log('Migrations exécutées avec succès');
+    } catch (migrationError) {
+      console.warn('Erreur lors de l\'exécution des migrations:', migrationError.message);
+      console.warn('L\'application continuera sans exécuter les migrations.');
     }
     
-    Object.assign(plant, req.body);
-    await writeJsonFile(plantsPath, data);
-    res.json(plant);
-  } catch (error) {
-    res.status(500).json({ error: 'Erreur lors de la mise à jour des données capteurs' });
-  }
-});
-
-// Route pour les mesures IoT
-app.post('/api/measurements', async (req, res) => {
-  try {
-    const data = req.body;
-    
-    // Logging des données reçues
-    console.log('Nouvelles mesures reçues:');
-    console.log('Device ID:', data.device_id);
-    console.log('Température:', data.temperature, '°C');
-    console.log('Humidité:', data.humidity, '%');
-    console.log('Timestamp:', new Date().toISOString());
-    console.log('------------------------');
-
-    // Ici vous pourriez ajouter le code pour sauvegarder les données dans une base de données
-
-    res.status(201).json({
-      message: 'Mesures reçues avec succès',
-      timestamp: new Date().toISOString()
+    // Démarrer le serveur
+    app.listen(PORT, () => {
+      console.log(`Serveur démarré sur http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error('Erreur lors du traitement des mesures:', error);
-    res.status(500).json({ error: 'Erreur lors du traitement des mesures' });
+    console.error('Erreur lors de l\'initialisation du serveur:', error);
+    process.exit(1);
   }
-});
+}
 
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur http://localhost:${PORT}`);
-});
+// Démarrer le serveur
+initializeServer();
