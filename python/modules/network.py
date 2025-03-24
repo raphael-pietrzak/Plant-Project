@@ -21,7 +21,7 @@ class NetworkManager:
         
         if self.wlan.isconnected():
             self.is_connected = True
-            print(f"Déjà connecté à {self.ssid}")
+            print(f"Déja connecté à {self.ssid}")
             print(f"Adresse IP: {self.wlan.ifconfig()[0]}")
             return True
         

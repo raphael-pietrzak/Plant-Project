@@ -3,13 +3,14 @@ const Measurement = require('../models/measurement');
 
 exports.createMeasurement = async (req, res) => {
   try {
-    const { temperature, humidity, device_id } = req.body;
+    const { temperature, humidity, light, device_id } = req.body;
     
     // Log des données reçues
     console.log('Nouvelles mesures reçues:');
     console.log('Device ID:', device_id);
     console.log('Température:', temperature, '°C');
     console.log('Humidité:', humidity, '%');
+    console.log('Luminosité:', light, 'lux');
     console.log('Timestamp:', new Date().toISOString());
     console.log('------------------------');
 
