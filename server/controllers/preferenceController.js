@@ -42,19 +42,24 @@ exports.createOrUpdatePreference = async (req, res) => {
       return res.status(400).json({ error: 'La clé et la valeur sont requises' });
     }
     
-    const [preference, created] = await Preference.findOrCreate({
-      where: { key },
-      defaults: { value }
-    });
+    // Vérifier si la préférence existe déjà
+    const existingPreference = await Preference.findOne({ key });
     
-    if (!created) {
+    if (!existingPreference) {
+      // Créer une nouvelle préférence
+      await Preference.create({ key, value });
+      res.status(201).json({
+        message: 'Préférence créée avec succès',
+        preference: { key, value }
+      });
+    } else {
+      // Mettre à jour la préférence existante
       await Preference.update({ key }, { value });
+      res.status(200).json({
+        message: 'Préférence mise à jour avec succès',
+        preference: { key, value }
+      });
     }
-    
-    res.status(created ? 201 : 200).json({
-      message: created ? 'Préférence créée avec succès' : 'Préférence mise à jour avec succès',
-      preference: { key, value }
-    });
   } catch (error) {
     console.error('Erreur lors de la création/mise à jour de la préférence:', error);
     res.status(500).json({ error: 'Erreur lors de la création/mise à jour de la préférence' });

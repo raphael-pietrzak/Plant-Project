@@ -32,13 +32,11 @@ exports.up = function(knex) {
       table.timestamps(true, true);
     })
     
-    // Table des préférences
+    // Table des préférences - Structure clé-valeur
     .createTable('preferences', table => {
       table.increments('id').primary();
-      table.boolean('notificationsEnabled').defaultTo(true);
-      table.boolean('darkMode').defaultTo(false);
-      table.string('measurementUnit').defaultTo('metric');
-      table.string('language').defaultTo('fr');
+      table.string('key').notNullable().unique();
+      table.json('value').notNullable();
       table.timestamps(true, true);
     });
 };
