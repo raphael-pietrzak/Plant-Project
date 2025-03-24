@@ -39,6 +39,9 @@ async function initializeServer() {
       // Exécuter les migrations
       await db.migrate.latest();
       console.log('Migrations exécutées avec succès');
+      // Exécuter les seeds
+      await db.seed.run();
+      console.log('Seeds exécutés avec succès');
     } catch (migrationError) {
       console.warn('Erreur lors de l\'exécution des migrations:', migrationError.message);
       console.warn('L\'application continuera sans exécuter les migrations.');

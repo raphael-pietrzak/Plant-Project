@@ -1,28 +1,27 @@
-const path = require('path');
-const fs = require('fs');
-
-// Charger les données depuis le fichier plants.json
-const loadPlantsData = () => {
-  const filePath = path.join(__dirname, '..', 'data', 'plants.json');
-  const rawData = fs.readFileSync(filePath);
-  return JSON.parse(rawData);
-};
-
 exports.seed = async function(knex) {
-  // Extraire les plantes (non les mesures)
-  const plantsData = loadPlantsData();
-  const plantEntries = plantsData.plants
-    .filter(plant => !plant.device_id)
-    .map(plant => ({
-      id: plant.id,
-      name: plant.name,
-      species: plant.category,
+  // Données des plantes directement au format de la base de données
+  const plantEntries = [
+    {
+      id: 1,
+      name: "Monstera Deliciosa",
+      species: "Tropical",
       location: 'Intérieur',
-      waterFrequency: 7, // valeur par défaut d'une semaine
+      waterFrequency: 7,
       lastWatered: new Date(),
       image_url: "https://media.istockphoto.com/id/469538141/fr/photo/jeune-plant.jpg?s=612x612&w=0&k=20&c=YusPoy6PHk7ai5y4iMzgx_RpVJjcmvyVelmfUBkUSKk=",
-      device_id: 'ESP8266_1' // Par défaut, on associe les plantes au capteur existant
-    }));
+      device_id: 'ESP8266_1'
+    },
+    {
+      id: 2,
+      name: "Ficus Lyrata",
+      species: "Arbres d'intérieur",
+      location: 'Intérieur',
+      waterFrequency: 7,
+      lastWatered: new Date(),
+      image_url: "https://media.istockphoto.com/id/469538141/fr/photo/jeune-plant.jpg?s=612x612&w=0&k=20&c=YusPoy6PHk7ai5y4iMzgx_RpVJjcmvyVelmfUBkUSKk=",
+      device_id: 'ESP8266_1'
+    }
+  ];
 
   // Vider la table des plantes
   await knex('plants').del();

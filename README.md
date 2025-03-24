@@ -1,6 +1,34 @@
 
 # Plant Project IOT
 
+## Run
+
+### Server
+
+```bash
+cd server
+npm install
+npm start
+```
+
+### Client
+
+```bash
+cd client
+npm install
+npm start
+```
+
+### ESP32
+
+```bash
+cd python
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python simulation.py
+```
+
 ## Description
 
 This project is a plant monitoring system. It is composed of an ESP32 microcontroller, a DHT11 sensor, a soil moisture sensor and a water pump. The ESP32 is connected to the sensors and the pump. It reads the data from the sensors and sends it to a server. The server stores the data in a database and displays it on a web page. The user can see the data on the web page and control the pump.

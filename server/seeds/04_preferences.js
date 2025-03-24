@@ -1,32 +1,24 @@
 const path = require('path');
 const fs = require('fs');
 
-// Charger les données depuis le fichier preferences.json
-const loadPreferencesData = () => {
-  const filePath = path.join(__dirname, '..', 'data', 'preferences.json');
-  const rawData = fs.readFileSync(filePath);
-  return JSON.parse(rawData);
-};
+
 
 exports.seed = async function(knex) {
-  const preferencesData = loadPreferencesData();
-  
-  // Vider la table des préférences
   await knex('preferences').del();
   
   // Créer les entrées de préférences au format clé-valeur
   const preferencesEntries = [
     {
       key: 'notifications.enabled',
-      value: JSON.stringify(preferencesData.notifications.humidityAlerts || preferencesData.notifications.temperatureAlerts)
+      value: JSON.stringify(true)
     },
     {
       key: 'notifications.humidity',
-      value: JSON.stringify(preferencesData.notifications.humidityAlerts || false)
+      value: JSON.stringify(false)
     },
     {
       key: 'notifications.temperature',
-      value: JSON.stringify(preferencesData.notifications.temperatureAlerts || false)
+      value: JSON.stringify(true)
     },
     {
       key: 'display.darkMode',
