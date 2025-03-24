@@ -61,13 +61,14 @@ function PlantDetail() {
   };
 
   // Formater les données pour le graphique
-  console.log(measurements);
   const chartData = measurements.map(m => ({
     date: new Date(m.timestamp).toLocaleDateString(),
     time: new Date(m.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
     humidity: m.humidity,
     temperature: m.temperature
   }));
+
+  console.log(chartData);
 
   if (loading) {
     return (
@@ -210,10 +211,10 @@ function PlantDetail() {
                     `${value}${name === 'humidity' ? '%' : '°C'}`, 
                     name === 'humidity' ? 'Humidité' : 'Température'
                   ]}
-                  labelFormatter={(index) => {
-                    // Vérifier que l'index est valide avant d'accéder aux propriétés
-                    if (typeof index === 'number' && chartData[index]) {
-                      return `${chartData[index].date} ${chartData[index].time}`;
+                  labelFormatter={(_, data) => {
+                    if (data && data.length > 0) {
+                      const point = data[0].payload;
+                      return `${point.date} ${point.time}`;
                     }
                     return 'Données non disponibles';
                   }}
